@@ -1,0 +1,4 @@
+# Required only when connecting to a real vehicle or ArduPilot SITL.
+# DroneKit has limited support for some newer Python versions; prefer a tested Python 3.10 environment.
+dronekit>=2.9.2,<3
+pymavlink>=2.4,<3

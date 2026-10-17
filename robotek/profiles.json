@@ -1,0 +1,1251 @@
+{
+  "ardupilot_land": {
+    "source": "ROBOTEK/Robotek_Ardupilot_Land.py",
+    "description": "ArduPilot LAND + r/h operator retry control",
+    "settings": {
+      "BAGLANTI_ADRESI": "tcp:192.168.30.3:5760",
+      "HEDEF_YUKSEKLIK": 10,
+      "HEDEF_MESAFE": 1.2,
+      "INIS_SONRASI_BEKLEME": 0,
+      "STABIL_MESAFE": 1.2,
+      "STABIL_HIZ": 0.4,
+      "STABIL_SURE": 2.0,
+      "WPNAV_INIS_HIZI": 100,
+      "YERDE_KABUL_IRTIFA": 0.55,
+      "YERDE_KABUL_HIZ": 0.35,
+      "YERDE_ONAY_SURESI": 1.0,
+      "WATCHDOG_AKTIF": true,
+      "RTL_KULLAN": true,
+      "MAKS_HOME_MESAFESI": 400,
+      "MAKS_IRTIFA": 40,
+      "KOMUT_BEKLEME_SURESI": 5.0,
+      "HOME_NOKTASI": {
+        "isim": "Home",
+        "lat": 40.74403631,
+        "lon": 30.33869061
+      },
+      "GOREV_NOKTALARI": [
+        {
+          "isim": "Hedef_1",
+          "lat": 40.74421326,
+          "lon": 30.33874879
+        },
+        {
+          "isim": "Hedef_2",
+          "lat": 40.74434805,
+          "lon": 30.33848807
+        },
+        {
+          "isim": "Hedef_3",
+          "lat": 40.74453955,
+          "lon": 30.33866349
+        },
+        {
+          "isim": "Hedef_4",
+          "lat": 40.74467783,
+          "lon": 30.33840338
+        }
+      ]
+    },
+    "methods": {
+      "mesafe_hesapla_metre": {
+        "module": "geometry",
+        "implementation": "mesafe_hesapla_metre_ve42f4c632afa"
+      },
+      "konum_hazir_mi": {
+        "module": "gps",
+        "implementation": "konum_hazir_mi_v7c4f05b10316"
+      },
+      "ardupilot_home_ayarla": {
+        "module": "gps",
+        "implementation": "ardupilot_home_ayarla_v44bd247b177d"
+      },
+      "arm_ve_takeoff": {
+        "module": "flight",
+        "implementation": "arm_ve_takeoff_vb0bf8e1f9896"
+      },
+      "failsafe_durum_kontrol": {
+        "module": "safety",
+        "implementation": "failsafe_durum_kontrol_v503dc8b89997"
+      },
+      "failsafe_uygula": {
+        "module": "safety",
+        "implementation": "failsafe_uygula_vf066bcd31305"
+      },
+      "hedefe_git": {
+        "module": "flight",
+        "implementation": "hedefe_git_v36944de5654d"
+      },
+      "hedef_ustunde_stabil_ol": {
+        "module": "flight",
+        "implementation": "hedef_ustunde_stabil_ol_vdea255c5ecb4"
+      },
+      "wpnav_speed_dn_ayarla": {
+        "module": "landing",
+        "implementation": "wpnav_speed_dn_ayarla_v43b449256723"
+      },
+      "land_ol": {
+        "module": "landing",
+        "implementation": "land_ol_v3d995af3602f"
+      },
+      "simpleGotoMavlink": {
+        "module": "flight",
+        "implementation": "simpleGotoMavlink_vad69853a1945"
+      },
+      "b_tusu_bekle": {
+        "module": "operator",
+        "implementation": "b_tusu_bekle_v0c4a6c9d514b"
+      },
+      "sureli_tus_kontrolu": {
+        "module": "operator",
+        "implementation": "sureli_tus_kontrolu_v8f090c31e851"
+      },
+      "konuma_git_ve_land": {
+        "module": "mission",
+        "implementation": "konuma_git_ve_land_v3fae72024eff"
+      },
+      "Gorevler": {
+        "module": "mission",
+        "implementation": "Gorevler_vda4f04021f67"
+      }
+    },
+    "repeats": 4,
+    "wait_for_b": true,
+    "interrupt_land": false
+  },
+  "simplegoto_land": {
+    "source": "ROBOTEK/Robotek_Simplegoto_land.py",
+    "description": "SimpleGoto/descending LAND method",
+    "settings": {
+      "BAGLANTI_ADRESI": "tcp:192.168.30.3:5760",
+      "HEDEF_YUKSEKLIK": 10,
+      "HEDEF_MESAFE": 1.2,
+      "INIS_SONRASI_BEKLEME": 0,
+      "STABIL_MESAFE": 1.2,
+      "STABIL_HIZ": 0.4,
+      "STABIL_SURE": 2.0,
+      "WPNAV_INIS_HIZI": 100,
+      "YAKIN_INIS_IRTIFA": 4.5,
+      "LAND_GECIS_IRTIFA": 5.0,
+      "YERDE_KABUL_IRTIFA": 0.55,
+      "BEKLEME_BASLAT_IRTIFA": 0.55,
+      "YERDE_KABUL_HIZ": 0.35,
+      "YERDE_ONAY_SURESI": 1.0,
+      "ERKEN_ARM_KALAN_SURE": 3.0,
+      "LAND_TAKILMA_SURESI": 3.0,
+      "LAND_KURTARMA_IRTIFA": 0.35,
+      "LAND_KURTARMA_SURESI": 5.0,
+      "LAND_KURTARMA_MAX_DENEME": 1,
+      "LAND_TAKILMA_IRTIFA_FARKI": 0.03,
+      "WATCHDOG_AKTIF": true,
+      "RTL_KULLAN": true,
+      "MAKS_HOME_MESAFESI": 400,
+      "MAKS_IRTIFA": 40,
+      "HOME_NOKTASI": {
+        "isim": "Home",
+        "lat": 40.74403631,
+        "lon": 30.33869061
+      },
+      "GOREV_NOKTALARI": [
+        {
+          "isim": "Hedef_1",
+          "lat": 40.74421326,
+          "lon": 30.33874879
+        },
+        {
+          "isim": "Hedef_2",
+          "lat": 40.74434805,
+          "lon": 30.33848807
+        },
+        {
+          "isim": "Hedef_3",
+          "lat": 40.74453955,
+          "lon": 30.33866349
+        },
+        {
+          "isim": "Hedef_4",
+          "lat": 40.74467783,
+          "lon": 30.33840338
+        }
+      ]
+    },
+    "methods": {
+      "mesafe_hesapla_metre": {
+        "module": "geometry",
+        "implementation": "mesafe_hesapla_metre_vae2c85b9282d"
+      },
+      "konum_hazir_mi": {
+        "module": "gps",
+        "implementation": "konum_hazir_mi_v7c4f05b10316"
+      },
+      "ardupilot_home_ayarla": {
+        "module": "gps",
+        "implementation": "ardupilot_home_ayarla_v44bd247b177d"
+      },
+      "arm_ve_takeoff": {
+        "module": "flight",
+        "implementation": "arm_ve_takeoff_v903b12da8a8e"
+      },
+      "failsafe_durum_kontrol": {
+        "module": "safety",
+        "implementation": "failsafe_durum_kontrol_v503dc8b89997"
+      },
+      "failsafe_uygula": {
+        "module": "safety",
+        "implementation": "failsafe_uygula_vf066bcd31305"
+      },
+      "gorev_iptal_guvenli_mod": {
+        "module": "safety",
+        "implementation": "gorev_iptal_guvenli_mod_v23f36dd5a313"
+      },
+      "hedefe_git": {
+        "module": "flight",
+        "implementation": "hedefe_git_v7883e4d25931"
+      },
+      "hedef_ustunde_stabil_ol": {
+        "module": "flight",
+        "implementation": "hedef_ustunde_stabil_ol_v0d50e2d0cc56"
+      },
+      "wpnav_speed_dn_ayarla": {
+        "module": "landing",
+        "implementation": "wpnav_speed_dn_ayarla_v43b449256723"
+      },
+      "land_takilma_kurtarma": {
+        "module": "landing",
+        "implementation": "land_takilma_kurtarma_vf230c65304ce"
+      },
+      "land_ol": {
+        "module": "landing",
+        "implementation": "land_ol_v3a728dbd6387"
+      },
+      "tek_hedef_gorevi": {
+        "module": "mission",
+        "implementation": "tek_hedef_gorevi_v6c78b495846a"
+      },
+      "simpleGotoMavlink": {
+        "module": "flight",
+        "implementation": "simpleGotoMavlink_vad69853a1945"
+      },
+      "b_tusu_bekle": {
+        "module": "operator",
+        "implementation": "b_tusu_bekle_v0c4a6c9d514b"
+      },
+      "Gorevler": {
+        "module": "mission",
+        "implementation": "Gorevler_v609a37198323"
+      }
+    },
+    "repeats": 3,
+    "wait_for_b": true,
+    "interrupt_land": false
+  },
+  "inis_tekrar_1": {
+    "source": "ROBOTEK/Inemezsek/bire_basarisiz_inis.py",
+    "description": "Original historical / alternative mission profile",
+    "settings": {
+      "BAGLANTI_ADRESI": "tcp:192.168.30.3:5760",
+      "HEDEF_YUKSEKLIK": 10,
+      "HEDEF_MESAFE": 1.2,
+      "INIS_SONRASI_BEKLEME": 0,
+      "STABIL_MESAFE": 1.2,
+      "STABIL_HIZ": 0.4,
+      "STABIL_SURE": 2.0,
+      "WPNAV_INIS_HIZI": 100,
+      "YERDE_KABUL_IRTIFA": 0.55,
+      "YERDE_KABUL_HIZ": 0.35,
+      "YERDE_ONAY_SURESI": 1.0,
+      "WATCHDOG_AKTIF": true,
+      "RTL_KULLAN": true,
+      "MAKS_HOME_MESAFESI": 400,
+      "MAKS_IRTIFA": 40,
+      "KOMUT_BEKLEME_SURESI": 5.0,
+      "HOME_NOKTASI": {
+        "isim": "Home",
+        "lat": 40.74403631,
+        "lon": 30.33869061
+      },
+      "GOREV_NOKTALARI": [
+        {
+          "isim": "Hedef_1",
+          "lat": 40.74421326,
+          "lon": 30.33874879
+        },
+        {
+          "isim": "Hedef_2",
+          "lat": 40.74434805,
+          "lon": 30.33848807
+        },
+        {
+          "isim": "Hedef_3",
+          "lat": 40.74453955,
+          "lon": 30.33866349
+        },
+        {
+          "isim": "Hedef_4",
+          "lat": 40.74467783,
+          "lon": 30.33840338
+        }
+      ]
+    },
+    "methods": {
+      "mesafe_hesapla_metre": {
+        "module": "geometry",
+        "implementation": "mesafe_hesapla_metre_ve42f4c632afa"
+      },
+      "konum_hazir_mi": {
+        "module": "gps",
+        "implementation": "konum_hazir_mi_v7c4f05b10316"
+      },
+      "ardupilot_home_ayarla": {
+        "module": "gps",
+        "implementation": "ardupilot_home_ayarla_v44bd247b177d"
+      },
+      "arm_ve_takeoff": {
+        "module": "flight",
+        "implementation": "arm_ve_takeoff_vb0bf8e1f9896"
+      },
+      "failsafe_durum_kontrol": {
+        "module": "safety",
+        "implementation": "failsafe_durum_kontrol_v503dc8b89997"
+      },
+      "failsafe_uygula": {
+        "module": "safety",
+        "implementation": "failsafe_uygula_vf066bcd31305"
+      },
+      "hedefe_git": {
+        "module": "flight",
+        "implementation": "hedefe_git_v36944de5654d"
+      },
+      "hedef_ustunde_stabil_ol": {
+        "module": "flight",
+        "implementation": "hedef_ustunde_stabil_ol_vdea255c5ecb4"
+      },
+      "wpnav_speed_dn_ayarla": {
+        "module": "landing",
+        "implementation": "wpnav_speed_dn_ayarla_v43b449256723"
+      },
+      "land_ol": {
+        "module": "landing",
+        "implementation": "land_ol_v3d995af3602f"
+      },
+      "simpleGotoMavlink": {
+        "module": "flight",
+        "implementation": "simpleGotoMavlink_vad69853a1945"
+      },
+      "b_tusu_bekle": {
+        "module": "operator",
+        "implementation": "b_tusu_bekle_v0c4a6c9d514b"
+      },
+      "sureli_tus_kontrolu": {
+        "module": "operator",
+        "implementation": "sureli_tus_kontrolu_v8f090c31e851"
+      },
+      "konuma_git_ve_land": {
+        "module": "mission",
+        "implementation": "konuma_git_ve_land_v3fae72024eff"
+      },
+      "Gorevler": {
+        "module": "mission",
+        "implementation": "Gorevler_vda4f04021f67"
+      }
+    },
+    "repeats": 3,
+    "wait_for_b": true,
+    "interrupt_land": false
+  },
+  "inis_tekrar_2": {
+    "source": "ROBOTEK/Inemezsek/ikiye_basarisiz_inis.py",
+    "description": "Original historical / alternative mission profile",
+    "settings": {
+      "BAGLANTI_ADRESI": "tcp:192.168.30.3:5760",
+      "HEDEF_YUKSEKLIK": 10,
+      "HEDEF_MESAFE": 1.2,
+      "INIS_SONRASI_BEKLEME": 0,
+      "STABIL_MESAFE": 1.2,
+      "STABIL_HIZ": 0.4,
+      "STABIL_SURE": 2.0,
+      "WPNAV_INIS_HIZI": 100,
+      "YERDE_KABUL_IRTIFA": 0.55,
+      "YERDE_KABUL_HIZ": 0.35,
+      "YERDE_ONAY_SURESI": 1.0,
+      "WATCHDOG_AKTIF": true,
+      "RTL_KULLAN": true,
+      "MAKS_HOME_MESAFESI": 400,
+      "MAKS_IRTIFA": 40,
+      "KOMUT_BEKLEME_SURESI": 5.0,
+      "HOME_NOKTASI": {
+        "isim": "Home",
+        "lat": 40.74403631,
+        "lon": 30.33869061
+      },
+      "GOREV_NOKTALARI": [
+        {
+          "isim": "Hedef_2",
+          "lat": 40.74434805,
+          "lon": 30.33848807
+        },
+        {
+          "isim": "Hedef_3",
+          "lat": 40.74453955,
+          "lon": 30.33866349
+        },
+        {
+          "isim": "Hedef_4",
+          "lat": 40.74467783,
+          "lon": 30.33840338
+        },
+        {
+          "isim": "Hedef_1",
+          "lat": 40.74421326,
+          "lon": 30.33874879
+        }
+      ]
+    },
+    "methods": {
+      "mesafe_hesapla_metre": {
+        "module": "geometry",
+        "implementation": "mesafe_hesapla_metre_ve42f4c632afa"
+      },
+      "konum_hazir_mi": {
+        "module": "gps",
+        "implementation": "konum_hazir_mi_v7c4f05b10316"
+      },
+      "ardupilot_home_ayarla": {
+        "module": "gps",
+        "implementation": "ardupilot_home_ayarla_v44bd247b177d"
+      },
+      "arm_ve_takeoff": {
+        "module": "flight",
+        "implementation": "arm_ve_takeoff_vb0bf8e1f9896"
+      },
+      "failsafe_durum_kontrol": {
+        "module": "safety",
+        "implementation": "failsafe_durum_kontrol_v503dc8b89997"
+      },
+      "failsafe_uygula": {
+        "module": "safety",
+        "implementation": "failsafe_uygula_vf066bcd31305"
+      },
+      "hedefe_git": {
+        "module": "flight",
+        "implementation": "hedefe_git_v36944de5654d"
+      },
+      "hedef_ustunde_stabil_ol": {
+        "module": "flight",
+        "implementation": "hedef_ustunde_stabil_ol_vdea255c5ecb4"
+      },
+      "wpnav_speed_dn_ayarla": {
+        "module": "landing",
+        "implementation": "wpnav_speed_dn_ayarla_v43b449256723"
+      },
+      "land_ol": {
+        "module": "landing",
+        "implementation": "land_ol_v3d995af3602f"
+      },
+      "simpleGotoMavlink": {
+        "module": "flight",
+        "implementation": "simpleGotoMavlink_vad69853a1945"
+      },
+      "b_tusu_bekle": {
+        "module": "operator",
+        "implementation": "b_tusu_bekle_v0c4a6c9d514b"
+      },
+      "sureli_tus_kontrolu": {
+        "module": "operator",
+        "implementation": "sureli_tus_kontrolu_v8f090c31e851"
+      },
+      "konuma_git_ve_land": {
+        "module": "mission",
+        "implementation": "konuma_git_ve_land_v3fae72024eff"
+      },
+      "Gorevler": {
+        "module": "mission",
+        "implementation": "Gorevler_vda4f04021f67"
+      }
+    },
+    "repeats": 3,
+    "wait_for_b": true,
+    "interrupt_land": false
+  },
+  "inis_tekrar_3": {
+    "source": "ROBOTEK/Inemezsek/uce_basarisiz_inis.py",
+    "description": "Original historical / alternative mission profile",
+    "settings": {
+      "BAGLANTI_ADRESI": "tcp:192.168.30.3:5760",
+      "HEDEF_YUKSEKLIK": 10,
+      "HEDEF_MESAFE": 1.2,
+      "INIS_SONRASI_BEKLEME": 0,
+      "STABIL_MESAFE": 1.2,
+      "STABIL_HIZ": 0.4,
+      "STABIL_SURE": 2.0,
+      "WPNAV_INIS_HIZI": 100,
+      "YERDE_KABUL_IRTIFA": 0.55,
+      "YERDE_KABUL_HIZ": 0.35,
+      "YERDE_ONAY_SURESI": 1.0,
+      "WATCHDOG_AKTIF": true,
+      "RTL_KULLAN": true,
+      "MAKS_HOME_MESAFESI": 400,
+      "MAKS_IRTIFA": 40,
+      "KOMUT_BEKLEME_SURESI": 5.0,
+      "HOME_NOKTASI": {
+        "isim": "Home",
+        "lat": 40.74403631,
+        "lon": 30.33869061
+      },
+      "GOREV_NOKTALARI": [
+        {
+          "isim": "Hedef_3",
+          "lat": 40.74453955,
+          "lon": 30.33866349
+        },
+        {
+          "isim": "Hedef_4",
+          "lat": 40.74467783,
+          "lon": 30.33840338
+        },
+        {
+          "isim": "Hedef_1",
+          "lat": 40.74421326,
+          "lon": 30.33874879
+        },
+        {
+          "isim": "Hedef_2",
+          "lat": 40.74434805,
+          "lon": 30.33848807
+        }
+      ]
+    },
+    "methods": {
+      "mesafe_hesapla_metre": {
+        "module": "geometry",
+        "implementation": "mesafe_hesapla_metre_ve42f4c632afa"
+      },
+      "konum_hazir_mi": {
+        "module": "gps",
+        "implementation": "konum_hazir_mi_v7c4f05b10316"
+      },
+      "ardupilot_home_ayarla": {
+        "module": "gps",
+        "implementation": "ardupilot_home_ayarla_v44bd247b177d"
+      },
+      "arm_ve_takeoff": {
+        "module": "flight",
+        "implementation": "arm_ve_takeoff_vb0bf8e1f9896"
+      },
+      "failsafe_durum_kontrol": {
+        "module": "safety",
+        "implementation": "failsafe_durum_kontrol_v503dc8b89997"
+      },
+      "failsafe_uygula": {
+        "module": "safety",
+        "implementation": "failsafe_uygula_vf066bcd31305"
+      },
+      "hedefe_git": {
+        "module": "flight",
+        "implementation": "hedefe_git_v36944de5654d"
+      },
+      "hedef_ustunde_stabil_ol": {
+        "module": "flight",
+        "implementation": "hedef_ustunde_stabil_ol_vdea255c5ecb4"
+      },
+      "wpnav_speed_dn_ayarla": {
+        "module": "landing",
+        "implementation": "wpnav_speed_dn_ayarla_v43b449256723"
+      },
+      "land_ol": {
+        "module": "landing",
+        "implementation": "land_ol_v3d995af3602f"
+      },
+      "simpleGotoMavlink": {
+        "module": "flight",
+        "implementation": "simpleGotoMavlink_vad69853a1945"
+      },
+      "b_tusu_bekle": {
+        "module": "operator",
+        "implementation": "b_tusu_bekle_v0c4a6c9d514b"
+      },
+      "sureli_tus_kontrolu": {
+        "module": "operator",
+        "implementation": "sureli_tus_kontrolu_v8f090c31e851"
+      },
+      "konuma_git_ve_land": {
+        "module": "mission",
+        "implementation": "konuma_git_ve_land_v3fae72024eff"
+      },
+      "Gorevler": {
+        "module": "mission",
+        "implementation": "Gorevler_vda4f04021f67"
+      }
+    },
+    "repeats": 3,
+    "wait_for_b": true,
+    "interrupt_land": false
+  },
+  "inis_tekrar_4": {
+    "source": "ROBOTEK/Inemezsek/dorde_basarisiz_inis.py",
+    "description": "Original historical / alternative mission profile",
+    "settings": {
+      "BAGLANTI_ADRESI": "tcp:192.168.30.3:5760",
+      "HEDEF_YUKSEKLIK": 10,
+      "HEDEF_MESAFE": 1.2,
+      "INIS_SONRASI_BEKLEME": 0,
+      "STABIL_MESAFE": 1.2,
+      "STABIL_HIZ": 0.4,
+      "STABIL_SURE": 2.0,
+      "WPNAV_INIS_HIZI": 100,
+      "YERDE_KABUL_IRTIFA": 0.55,
+      "YERDE_KABUL_HIZ": 0.35,
+      "YERDE_ONAY_SURESI": 1.0,
+      "WATCHDOG_AKTIF": true,
+      "RTL_KULLAN": true,
+      "MAKS_HOME_MESAFESI": 400,
+      "MAKS_IRTIFA": 40,
+      "KOMUT_BEKLEME_SURESI": 5.0,
+      "HOME_NOKTASI": {
+        "isim": "Home",
+        "lat": 40.74403631,
+        "lon": 30.33869061
+      },
+      "GOREV_NOKTALARI": [
+        {
+          "isim": "Hedef_4",
+          "lat": 40.74467783,
+          "lon": 30.33840338
+        },
+        {
+          "isim": "Hedef_1",
+          "lat": 40.74421326,
+          "lon": 30.33874879
+        },
+        {
+          "isim": "Hedef_2",
+          "lat": 40.74434805,
+          "lon": 30.33848807
+        },
+        {
+          "isim": "Hedef_3",
+          "lat": 40.74453955,
+          "lon": 30.33866349
+        }
+      ]
+    },
+    "methods": {
+      "mesafe_hesapla_metre": {
+        "module": "geometry",
+        "implementation": "mesafe_hesapla_metre_ve42f4c632afa"
+      },
+      "konum_hazir_mi": {
+        "module": "gps",
+        "implementation": "konum_hazir_mi_v7c4f05b10316"
+      },
+      "ardupilot_home_ayarla": {
+        "module": "gps",
+        "implementation": "ardupilot_home_ayarla_v44bd247b177d"
+      },
+      "arm_ve_takeoff": {
+        "module": "flight",
+        "implementation": "arm_ve_takeoff_vb0bf8e1f9896"
+      },
+      "failsafe_durum_kontrol": {
+        "module": "safety",
+        "implementation": "failsafe_durum_kontrol_v503dc8b89997"
+      },
+      "failsafe_uygula": {
+        "module": "safety",
+        "implementation": "failsafe_uygula_vf066bcd31305"
+      },
+      "hedefe_git": {
+        "module": "flight",
+        "implementation": "hedefe_git_v36944de5654d"
+      },
+      "hedef_ustunde_stabil_ol": {
+        "module": "flight",
+        "implementation": "hedef_ustunde_stabil_ol_vdea255c5ecb4"
+      },
+      "wpnav_speed_dn_ayarla": {
+        "module": "landing",
+        "implementation": "wpnav_speed_dn_ayarla_v43b449256723"
+      },
+      "land_ol": {
+        "module": "landing",
+        "implementation": "land_ol_v3d995af3602f"
+      },
+      "simpleGotoMavlink": {
+        "module": "flight",
+        "implementation": "simpleGotoMavlink_vad69853a1945"
+      },
+      "b_tusu_bekle": {
+        "module": "operator",
+        "implementation": "b_tusu_bekle_v0c4a6c9d514b"
+      },
+      "sureli_tus_kontrolu": {
+        "module": "operator",
+        "implementation": "sureli_tus_kontrolu_v8f090c31e851"
+      },
+      "konuma_git_ve_land": {
+        "module": "mission",
+        "implementation": "konuma_git_ve_land_v3fae72024eff"
+      },
+      "Gorevler": {
+        "module": "mission",
+        "implementation": "Gorevler_vda4f04021f67"
+      }
+    },
+    "repeats": 3,
+    "wait_for_b": true,
+    "interrupt_land": false
+  },
+  "yedek_0": {
+    "source": "Yedekler/Ana_Kod_Yedek.py",
+    "description": "Original historical / alternative mission profile",
+    "settings": {
+      "BAGLANTI_ADRESI": "tcp:192.168.30.3:5760",
+      "HEDEF_YUKSEKLIK": 10,
+      "HEDEF_MESAFE": 1.2,
+      "INIS_SONRASI_BEKLEME": 0,
+      "STABIL_MESAFE": 1.2,
+      "STABIL_HIZ": 0.4,
+      "STABIL_SURE": 1.0,
+      "NORMAL_HIZ": 3,
+      "YAVAS_HIZ": 1,
+      "YAVASLAMA_MESAFESI": 5,
+      "WPNAV_INIS_HIZI": 100,
+      "WATCHDOG_AKTIF": true,
+      "BATARYA_KONTROL_AKTIF": false,
+      "RTL_KULLAN": true,
+      "MAKS_HOME_MESAFESI": 80,
+      "MAKS_IRTIFA": 20,
+      "MIN_BATARYA_VOLTAJ": 14.4,
+      "HOME_NOKTASI": {
+        "isim": "Home",
+        "lat": 40.74439665,
+        "lon": 30.33822099
+      },
+      "GOREV_NOKTALARI": [
+        {
+          "isim": "Hedef_1",
+          "lat": 40.74447755,
+          "lon": 30.33819661
+        },
+        {
+          "isim": "Hedef_2",
+          "lat": 40.74430471,
+          "lon": 30.33823617
+        }
+      ]
+    },
+    "methods": {
+      "mesafe_hesapla_metre": {
+        "module": "geometry",
+        "implementation": "mesafe_hesapla_metre_vae2c85b9282d"
+      },
+      "konum_hazir_mi": {
+        "module": "gps",
+        "implementation": "konum_hazir_mi_v7c4f05b10316"
+      },
+      "ardupilot_home_ayarla": {
+        "module": "gps",
+        "implementation": "ardupilot_home_ayarla_v44bd247b177d"
+      },
+      "arm_ve_takeoff": {
+        "module": "flight",
+        "implementation": "arm_ve_takeoff_v8229c4cd4026"
+      },
+      "failsafe_durum_kontrol": {
+        "module": "safety",
+        "implementation": "failsafe_durum_kontrol_v162ec4b7bbaf"
+      },
+      "failsafe_uygula": {
+        "module": "safety",
+        "implementation": "failsafe_uygula_v87c5ed25e24f"
+      },
+      "gorev_iptal_guvenli_mod": {
+        "module": "safety",
+        "implementation": "gorev_iptal_guvenli_mod_v115c385b0907"
+      },
+      "hedefe_git": {
+        "module": "flight",
+        "implementation": "hedefe_git_vff2bd5df5d8e"
+      },
+      "hedef_ustunde_stabil_ol": {
+        "module": "flight",
+        "implementation": "hedef_ustunde_stabil_ol_v96b2eb800f38"
+      },
+      "wpnav_speed_dn_ayarla": {
+        "module": "landing",
+        "implementation": "wpnav_speed_dn_ayarla_v43b449256723"
+      },
+      "land_ol": {
+        "module": "landing",
+        "implementation": "land_ol_v77097538b55d"
+      },
+      "inis_sonrasi_bekle": {
+        "module": "landing",
+        "implementation": "inis_sonrasi_bekle_v4903442c421c"
+      },
+      "tek_hedef_gorevi": {
+        "module": "mission",
+        "implementation": "tek_hedef_gorevi_vd4a7b54ec2b7"
+      },
+      "simpleGotoMavlink": {
+        "module": "flight",
+        "implementation": "simpleGotoMavlink_v7ccae4c8c36c"
+      },
+      "Gorevler": {
+        "module": "mission",
+        "implementation": "Gorevler_v1ce0cffcb4f9"
+      }
+    },
+    "repeats": 1,
+    "wait_for_b": false,
+    "interrupt_land": true
+  },
+  "yedek_1": {
+    "source": "Yedekler/Ana_Kod_Yedek1.py",
+    "description": "Original historical / alternative mission profile",
+    "settings": {
+      "BAGLANTI_ADRESI": "tcp:192.168.30.3:5760",
+      "HEDEF_YUKSEKLIK": 10,
+      "HEDEF_MESAFE": 1.2,
+      "INIS_SONRASI_BEKLEME": 3,
+      "STABIL_MESAFE": 1.2,
+      "STABIL_HIZ": 0.4,
+      "STABIL_SURE": 1.0,
+      "WPNAV_INIS_HIZI": 250,
+      "WATCHDOG_AKTIF": true,
+      "RTL_KULLAN": true,
+      "MAKS_HOME_MESAFESI": 80,
+      "MAKS_IRTIFA": 20,
+      "YERDE_KABUL_IRTIFA": 0.3,
+      "BEKLEME_BASLAT_IRTIFA": 0.3,
+      "YERDE_KABUL_HIZ": 0.35,
+      "YERDE_ONAY_SURESI": 1.0,
+      "ERKEN_ARM_KALAN_SURE": 3.0,
+      "HOME_NOKTASI": {
+        "isim": "Home",
+        "lat": 40.7445375,
+        "lon": 30.33806872
+      },
+      "GUVENLI_INIS_NOKTASI": {
+        "$alias": "HOME_NOKTASI"
+      },
+      "GOREV_NOKTALARI": [
+        {
+          "isim": "Hedef_1",
+          "lat": 40.74447852,
+          "lon": 30.3381619
+        },
+        {
+          "isim": "Hedef_2",
+          "lat": 40.7443992,
+          "lon": 30.338185
+        },
+        {
+          "isim": "Hedef_4",
+          "lat": 40.74428052,
+          "lon": 30.33811068
+        }
+      ]
+    },
+    "methods": {
+      "mesafe_hesapla_metre": {
+        "module": "geometry",
+        "implementation": "mesafe_hesapla_metre_vae2c85b9282d"
+      },
+      "konum_hazir_mi": {
+        "module": "gps",
+        "implementation": "konum_hazir_mi_v7c4f05b10316"
+      },
+      "ardupilot_home_ayarla": {
+        "module": "gps",
+        "implementation": "ardupilot_home_ayarla_v44bd247b177d"
+      },
+      "arm_ve_takeoff": {
+        "module": "flight",
+        "implementation": "arm_ve_takeoff_v903b12da8a8e"
+      },
+      "failsafe_durum_kontrol": {
+        "module": "safety",
+        "implementation": "failsafe_durum_kontrol_vebd10d3ee91e"
+      },
+      "failsafe_uygula": {
+        "module": "safety",
+        "implementation": "failsafe_uygula_vf066bcd31305"
+      },
+      "gorev_iptal_guvenli_mod": {
+        "module": "safety",
+        "implementation": "gorev_iptal_guvenli_mod_v115c385b0907"
+      },
+      "hedefe_git": {
+        "module": "flight",
+        "implementation": "hedefe_git_v7883e4d25931"
+      },
+      "hedef_ustunde_stabil_ol": {
+        "module": "flight",
+        "implementation": "hedef_ustunde_stabil_ol_v0d50e2d0cc56"
+      },
+      "wpnav_speed_dn_ayarla": {
+        "module": "landing",
+        "implementation": "wpnav_speed_dn_ayarla_v43b449256723"
+      },
+      "land_ol": {
+        "module": "landing",
+        "implementation": "land_ol_v7f1d5f5e2055"
+      },
+      "tek_hedef_gorevi": {
+        "module": "mission",
+        "implementation": "tek_hedef_gorevi_v1b688db6fd2e"
+      },
+      "simpleGotoMavlink": {
+        "module": "flight",
+        "implementation": "simpleGotoMavlink_vad69853a1945"
+      },
+      "Gorevler": {
+        "module": "mission",
+        "implementation": "Gorevler_v1ce0cffcb4f9"
+      }
+    },
+    "repeats": 1,
+    "wait_for_b": false,
+    "interrupt_land": true
+  },
+  "yedek_3": {
+    "source": "Yedekler/Ana_Kod_Yedek3.py",
+    "description": "Original historical / alternative mission profile",
+    "settings": {
+      "BAGLANTI_ADRESI": "udp:127.0.0.1:14550",
+      "HEDEF_YUKSEKLIK": 10,
+      "HEDEF_MESAFE": 1.2,
+      "INIS_SONRASI_BEKLEME": 0,
+      "STABIL_MESAFE": 1.2,
+      "STABIL_HIZ": 0.4,
+      "STABIL_SURE": 1.0,
+      "WPNAV_INIS_HIZI": 300,
+      "YAKIN_INIS_IRTIFA": 0.2,
+      "LAND_GECIS_IRTIFA": 0.3,
+      "YERDE_KABUL_IRTIFA": 0.22,
+      "BEKLEME_BASLAT_IRTIFA": 0.12,
+      "YERDE_KABUL_HIZ": 0.35,
+      "YERDE_ONAY_SURESI": 1.0,
+      "LAND_TAKILMA_SURESI": 3.0,
+      "LAND_KURTARMA_IRTIFA": 0.18,
+      "LAND_KURTARMA_SURESI": 5.0,
+      "LAND_KURTARMA_MAX_DENEME": 2,
+      "LAND_TAKILMA_IRTIFA_FARKI": 0.03,
+      "WATCHDOG_AKTIF": true,
+      "RTL_KULLAN": true,
+      "MAKS_HOME_MESAFESI": 80,
+      "MAKS_IRTIFA": 20,
+      "HOME_NOKTASI": {
+        "isim": "Home",
+        "lat": -35.3634956,
+        "lon": 149.1650225
+      },
+      "GOREV_NOKTALARI": [
+        {
+          "isim": "Hedef_1",
+          "lat": -35.3635567,
+          "lon": 149.1649536
+        },
+        {
+          "isim": "Hedef_2",
+          "lat": -35.3635558,
+          "lon": 149.1651442
+        }
+      ]
+    },
+    "methods": {
+      "mesafe_hesapla_metre": {
+        "module": "geometry",
+        "implementation": "mesafe_hesapla_metre_vae2c85b9282d"
+      },
+      "konum_hazir_mi": {
+        "module": "gps",
+        "implementation": "konum_hazir_mi_v7c4f05b10316"
+      },
+      "ardupilot_home_ayarla": {
+        "module": "gps",
+        "implementation": "ardupilot_home_ayarla_v44bd247b177d"
+      },
+      "arm_ve_takeoff": {
+        "module": "flight",
+        "implementation": "arm_ve_takeoff_v903b12da8a8e"
+      },
+      "failsafe_durum_kontrol": {
+        "module": "safety",
+        "implementation": "failsafe_durum_kontrol_vebd10d3ee91e"
+      },
+      "failsafe_uygula": {
+        "module": "safety",
+        "implementation": "failsafe_uygula_vf066bcd31305"
+      },
+      "gorev_iptal_guvenli_mod": {
+        "module": "safety",
+        "implementation": "gorev_iptal_guvenli_mod_v115c385b0907"
+      },
+      "hedefe_git": {
+        "module": "flight",
+        "implementation": "hedefe_git_v7883e4d25931"
+      },
+      "hedef_ustunde_stabil_ol": {
+        "module": "flight",
+        "implementation": "hedef_ustunde_stabil_ol_v0d50e2d0cc56"
+      },
+      "wpnav_speed_dn_ayarla": {
+        "module": "landing",
+        "implementation": "wpnav_speed_dn_ayarla_v43b449256723"
+      },
+      "land_takilma_kurtarma": {
+        "module": "landing",
+        "implementation": "land_takilma_kurtarma_vf230c65304ce"
+      },
+      "land_ol": {
+        "module": "landing",
+        "implementation": "land_ol_v3a728dbd6387"
+      },
+      "tek_hedef_gorevi": {
+        "module": "mission",
+        "implementation": "tek_hedef_gorevi_v6c78b495846a"
+      },
+      "simpleGotoMavlink": {
+        "module": "flight",
+        "implementation": "simpleGotoMavlink_vad69853a1945"
+      },
+      "Gorevler": {
+        "module": "mission",
+        "implementation": "Gorevler_v609a37198323"
+      }
+    },
+    "repeats": 1,
+    "wait_for_b": false,
+    "interrupt_land": true
+  },
+  "yedek_4": {
+    "source": "Yedekler/Ana_Kod_Yedek4.py",
+    "description": "Original historical / alternative mission profile",
+    "settings": {
+      "BAGLANTI_ADRESI": "tcp:192.168.30.3:5760",
+      "HEDEF_YUKSEKLIK": 20,
+      "HEDEF_MESAFE": 1.2,
+      "INIS_SONRASI_BEKLEME": 6,
+      "STABIL_MESAFE": 1.2,
+      "STABIL_HIZ": 0.4,
+      "STABIL_SURE": 1.0,
+      "WPNAV_INIS_HIZI": 250,
+      "YAKIN_INIS_IRTIFA": 0.5,
+      "LAND_GECIS_IRTIFA": 0.6,
+      "YERDE_KABUL_IRTIFA": 0.55,
+      "BEKLEME_BASLAT_IRTIFA": 0.55,
+      "YERDE_KABUL_HIZ": 0.35,
+      "YERDE_ONAY_SURESI": 1.0,
+      "ERKEN_ARM_KALAN_SURE": 3.0,
+      "LAND_TAKILMA_SURESI": 3.0,
+      "LAND_KURTARMA_IRTIFA": 0.22,
+      "LAND_KURTARMA_SURESI": 5.0,
+      "LAND_KURTARMA_MAX_DENEME": 1,
+      "LAND_TAKILMA_IRTIFA_FARKI": 0.03,
+      "WATCHDOG_AKTIF": true,
+      "RTL_KULLAN": true,
+      "MAKS_HOME_MESAFESI": 80,
+      "MAKS_IRTIFA": 30,
+      "HOME_NOKTASI": {
+        "isim": "Home",
+        "lat": 40.744574,
+        "lon": 30.3382862
+      },
+      "GOREV_NOKTALARI": [
+        {
+          "isim": "Hedef_3",
+          "lat": 40.7443499,
+          "lon": 30.3384976
+        },
+        {
+          "isim": "Hedef_2",
+          "lat": 40.7444117,
+          "lon": 30.3383284
+        },
+        {
+          "isim": "Hedef_1",
+          "lat": 40.7445119,
+          "lon": 30.3384547
+        }
+      ]
+    },
+    "methods": {
+      "mesafe_hesapla_metre": {
+        "module": "geometry",
+        "implementation": "mesafe_hesapla_metre_vae2c85b9282d"
+      },
+      "konum_hazir_mi": {
+        "module": "gps",
+        "implementation": "konum_hazir_mi_v7c4f05b10316"
+      },
+      "ardupilot_home_ayarla": {
+        "module": "gps",
+        "implementation": "ardupilot_home_ayarla_v44bd247b177d"
+      },
+      "arm_ve_takeoff": {
+        "module": "flight",
+        "implementation": "arm_ve_takeoff_v903b12da8a8e"
+      },
+      "failsafe_durum_kontrol": {
+        "module": "safety",
+        "implementation": "failsafe_durum_kontrol_vbe0fd87a8cfa"
+      },
+      "failsafe_uygula": {
+        "module": "safety",
+        "implementation": "failsafe_uygula_vf066bcd31305"
+      },
+      "gorev_iptal_guvenli_mod": {
+        "module": "safety",
+        "implementation": "gorev_iptal_guvenli_mod_v23f36dd5a313"
+      },
+      "hedefe_git": {
+        "module": "flight",
+        "implementation": "hedefe_git_v7883e4d25931"
+      },
+      "hedef_ustunde_stabil_ol": {
+        "module": "flight",
+        "implementation": "hedef_ustunde_stabil_ol_v0d50e2d0cc56"
+      },
+      "wpnav_speed_dn_ayarla": {
+        "module": "landing",
+        "implementation": "wpnav_speed_dn_ayarla_v43b449256723"
+      },
+      "land_takilma_kurtarma": {
+        "module": "landing",
+        "implementation": "land_takilma_kurtarma_vf230c65304ce"
+      },
+      "land_ol": {
+        "module": "landing",
+        "implementation": "land_ol_v3a728dbd6387"
+      },
+      "tek_hedef_gorevi": {
+        "module": "mission",
+        "implementation": "tek_hedef_gorevi_v6c78b495846a"
+      },
+      "simpleGotoMavlink": {
+        "module": "flight",
+        "implementation": "simpleGotoMavlink_vad69853a1945"
+      },
+      "Gorevler": {
+        "module": "mission",
+        "implementation": "Gorevler_v609a37198323"
+      }
+    },
+    "repeats": 1,
+    "wait_for_b": false,
+    "interrupt_land": true
+  },
+  "yedek_5": {
+    "source": "Yedekler/Ana_Kod_Yedek5.py",
+    "description": "Original historical / alternative mission profile",
+    "settings": {
+      "BAGLANTI_ADRESI": "tcp:192.168.30.3:5760",
+      "HEDEF_YUKSEKLIK": 10,
+      "HEDEF_MESAFE": 1.2,
+      "INIS_SONRASI_BEKLEME": 6,
+      "STABIL_MESAFE": 1.2,
+      "STABIL_HIZ": 0.4,
+      "STABIL_SURE": 1.0,
+      "WPNAV_INIS_HIZI": 150,
+      "YAKIN_INIS_IRTIFA": 0.5,
+      "LAND_GECIS_IRTIFA": 0.6,
+      "YERDE_KABUL_IRTIFA": 0.55,
+      "BEKLEME_BASLAT_IRTIFA": 0.55,
+      "YERDE_KABUL_HIZ": 0.35,
+      "YERDE_ONAY_SURESI": 1.0,
+      "ERKEN_ARM_KALAN_SURE": 3.0,
+      "LAND_TAKILMA_SURESI": 3.0,
+      "LAND_KURTARMA_IRTIFA": 0.22,
+      "LAND_KURTARMA_SURESI": 5.0,
+      "LAND_KURTARMA_MAX_DENEME": 1,
+      "LAND_TAKILMA_IRTIFA_FARKI": 0.03,
+      "WATCHDOG_AKTIF": true,
+      "RTL_KULLAN": true,
+      "MAKS_HOME_MESAFESI": 80,
+      "MAKS_IRTIFA": 30,
+      "HOME_NOKTASI": {
+        "isim": "Hedef_1",
+        "lat": 40.67416799,
+        "lon": 30.3714356
+      },
+      "GOREV_NOKTALARI": [
+        {
+          "isim": "Hedef_1",
+          "lat": 40.67408046,
+          "lon": 30.37129604
+        }
+      ]
+    },
+    "methods": {
+      "mesafe_hesapla_metre": {
+        "module": "geometry",
+        "implementation": "mesafe_hesapla_metre_vae2c85b9282d"
+      },
+      "konum_hazir_mi": {
+        "module": "gps",
+        "implementation": "konum_hazir_mi_v7c4f05b10316"
+      },
+      "ardupilot_home_ayarla": {
+        "module": "gps",
+        "implementation": "ardupilot_home_ayarla_v44bd247b177d"
+      },
+      "arm_ve_takeoff": {
+        "module": "flight",
+        "implementation": "arm_ve_takeoff_v903b12da8a8e"
+      },
+      "failsafe_durum_kontrol": {
+        "module": "safety",
+        "implementation": "failsafe_durum_kontrol_vbe0fd87a8cfa"
+      },
+      "failsafe_uygula": {
+        "module": "safety",
+        "implementation": "failsafe_uygula_vf066bcd31305"
+      },
+      "gorev_iptal_guvenli_mod": {
+        "module": "safety",
+        "implementation": "gorev_iptal_guvenli_mod_v23f36dd5a313"
+      },
+      "hedefe_git": {
+        "module": "flight",
+        "implementation": "hedefe_git_v7883e4d25931"
+      },
+      "hedef_ustunde_stabil_ol": {
+        "module": "flight",
+        "implementation": "hedef_ustunde_stabil_ol_v0d50e2d0cc56"
+      },
+      "wpnav_speed_dn_ayarla": {
+        "module": "landing",
+        "implementation": "wpnav_speed_dn_ayarla_v43b449256723"
+      },
+      "land_takilma_kurtarma": {
+        "module": "landing",
+        "implementation": "land_takilma_kurtarma_vf230c65304ce"
+      },
+      "land_ol": {
+        "module": "landing",
+        "implementation": "land_ol_v3a728dbd6387"
+      },
+      "tek_hedef_gorevi": {
+        "module": "mission",
+        "implementation": "tek_hedef_gorevi_v6c78b495846a"
+      },
+      "simpleGotoMavlink": {
+        "module": "flight",
+        "implementation": "simpleGotoMavlink_vad69853a1945"
+      },
+      "b_tusu_bekle": {
+        "module": "operator",
+        "implementation": "b_tusu_bekle_v0c4a6c9d514b"
+      },
+      "Gorevler": {
+        "module": "mission",
+        "implementation": "Gorevler_v609a37198323"
+      }
+    },
+    "repeats": 3,
+    "wait_for_b": true,
+    "interrupt_land": true
+  }
+}

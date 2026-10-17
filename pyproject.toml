@@ -1,0 +1,19 @@
+[project]
+name = "fatih-robotek-yazilim"
+version = "2.0.0"
+description = "Modular, profile-based ArduPilot/DroneKit mission scripts"
+requires-python = ">=3.10"
+dependencies = ["dronekit>=2.9.2,<3", "pymavlink>=2.4,<3"]
+
+[project.scripts]
+robotek = "robotek.cli:main"
+
+[build-system]
+requires = ["setuptools>=65"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["robotek*"]
+
+[tool.setuptools.package-data]
+robotek = ["profiles.json"]
